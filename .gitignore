@@ -1,0 +1,11 @@
+# JavaScript / Next.js
+node_modules/
+.next/
+out/
+
+# Environment files and credentials
+.env
+.env.*
+
+# System files
+.DS_Store
