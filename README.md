@@ -61,6 +61,19 @@ public/
 docs/portfolio-system/   Requisitos y decisiones canónicas del proyecto.
 ```
 
+## Rutas públicas
+
+| Ruta | Propósito |
+| --- | --- |
+| `/` | Inicio y selección de proyectos. |
+| `/sobre-mi` | Perfil profesional. |
+| `/proyectos` | Archivo de proyectos. |
+| `/proyectos/proyecto-en-preparacion` | Plantilla de detalle de proyecto. |
+| `/cv` | CV, experiencia, educación y herramientas. |
+| `/contacto` | Canales profesionales de contacto. |
+
+Durante la Fase 3 estas rutas muestran plantillas. La información real se incorporará a través de los archivos de `content/` en las fases 4 y 5.
+
 `content/` guardará solo información estructurada y editable. `public/media/` guardará únicamente versiones web optimizadas que puedan publicarse. Los originales de alta resolución deben permanecer fuera del repositorio hasta clasificarlos y optimizarlos.
 
 ## Contenido y medios
@@ -82,6 +95,5 @@ Actualmente el proyecto no requiere variables de entorno. No crees archivos `.en
 ## Fases
 
 - Completada: Fase 1 — limpieza del proyecto anterior.
-- En curso: Fase 2 — base de desarrollo local.
-- Próxima: Fase 3 — plantilla del portafolio.
-
+- Completada: Fase 2 — base de desarrollo local.
+- En curso: Fase 3 — plantilla del portafolio.
