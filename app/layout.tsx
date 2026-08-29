@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { profile } from '../content';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Karla González — Arquitectura',
+    default: `${profile.name} — ${profile.professionalTitle}`,
     template: '%s',
   },
-  description: 'Portafolio profesional de arquitectura de Karla González.',
+  description: profile.introduction,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

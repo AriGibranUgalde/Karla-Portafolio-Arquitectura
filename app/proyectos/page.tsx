@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
 export const metadata: Metadata = {
-  title: 'Proyectos | Karla González Arquitectura',
-  description: 'Selección de proyectos de arquitectura de Karla González.',
+  title: `Proyectos | ${profile.name}, ${profile.professionalTitle}`,
+  description: `Selección de proyectos de ${profile.name}.`,
 };
 
 const placeholders = ['01', '02', '03', '04', '05', '06'];

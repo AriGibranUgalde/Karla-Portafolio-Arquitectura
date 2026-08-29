@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
 export const metadata: Metadata = {
-  title: 'Contacto | Karla González Arquitectura',
-  description: 'Contacto profesional de Karla González.',
+  title: `Contacto | ${profile.name}, ${profile.professionalTitle}`,
+  description: `Contacto profesional de ${profile.name}.`,
 };
 
 export default function ContactPage() {

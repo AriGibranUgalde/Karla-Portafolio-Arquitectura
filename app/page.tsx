@@ -1,16 +1,19 @@
 import Link from 'next/link';
+import { profile } from '../content';
 import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
 
 export default function Home() {
+  const [firstName, ...lastName] = profile.name.split(' ');
+
   return (
     <>
       <SiteHeader />
       <main id="contenido">
         <section className="hero page-shell" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">Arquitectura · México</p>
-            <h1 id="hero-title">Karla<br />González<span>.</span></h1>
+            <p className="eyebrow">{profile.professionalTitle} · {profile.location}</p>
+            <h1 id="hero-title">{firstName}<br />{lastName.join(' ')}<span>.</span></h1>
             <p className="hero-intro">
               Portafolio profesional de arquitectura. Espacio para proyectos, procesos y una mirada construida con intención.
             </p>
@@ -43,7 +46,7 @@ export default function Home() {
           <div className="cv-feature-copy">
             <h2 id="cv-feature-title">Experiencia, formación y herramientas que acompañan cada proyecto.</h2>
             <p>
-              Consulta el perfil profesional, la experiencia, la educación y las herramientas de trabajo de Karla González.
+              Consulta el perfil profesional, la experiencia, la educación y las herramientas de trabajo de {profile.name}.
             </p>
             <Link className="text-link" href="/cv">Ver CV y experiencia <span aria-hidden="true">↗</span></Link>
           </div>

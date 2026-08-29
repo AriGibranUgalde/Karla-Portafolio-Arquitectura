@@ -1,6 +1,6 @@
 # Karla Portafolio Arquitectura
 
-Portafolio profesional estático de Karla González, construido con Next.js. El proyecto no usa CMS, panel administrativo, base de datos, autenticación ni backend.
+Portafolio profesional estático de Karla González, arquitecta en Querétaro, México, construido con Next.js. El proyecto no usa CMS, panel administrativo, base de datos, autenticación ni backend.
 
 La documentación rectora está en [`docs/portfolio-system/`](docs/portfolio-system/README.md). Debe consultarse antes de cambiar la arquitectura, el contenido o el despliegue.
 
@@ -51,8 +51,10 @@ El comando mostrará la URL local disponible, normalmente `http://localhost:3000
 ```text
 app/                     Rutas, componentes y estilos de la aplicación.
 content/
-  profile/               Datos de perfil que se definirán en la Fase 4.
-  projects/              Datos de proyectos que se definirán en la Fase 4.
+  profile/               Perfil, experiencia, educación y habilidades.
+  projects/              Proyectos estructurados y sus referencias.
+  documents/             CV y documentos públicos.
+  types.ts               Campos permitidos para todo el contenido.
 public/
   media/
     profile/             Foto profesional y recursos de perfil optimizados.
@@ -76,13 +78,17 @@ Durante la Fase 3 estas rutas muestran plantillas. La información real se incor
 
 `content/` guardará solo información estructurada y editable. `public/media/` guardará únicamente versiones web optimizadas que puedan publicarse. Los originales de alta resolución deben permanecer fuera del repositorio hasta clasificarlos y optimizarlos.
 
+## Modelo de contenido
+
+El sitio usa archivos TypeScript tipados, sin CMS ni base de datos. Consulta [`content/README.md`](content/README.md) antes de editar el perfil, los proyectos o los documentos. Los arreglos vacíos representan contenido pendiente de aprobación; no deben llenarse con información ficticia.
+
 ## Contenido y medios
 
 - No publiques archivos de Drive sin revisarlos, clasificarlos y asociarlos a una sección del portafolio.
 - Usa nombres descriptivos en minúsculas y con guiones, por ejemplo `casa-patio-01.webp`.
 - Añade texto alternativo y metadatos al integrar una imagen en la Fase 5.
 - No agregues datos personales sensibles, credenciales, llaves privadas ni archivos internos a `public/` o Git.
-- El formato definitivo de perfil y proyectos se decidirá en la Fase 4; por ahora las carpetas son la base organizativa.
+- El formato de perfil y proyectos está definido en `content/types.ts`.
 
 ## Variables de entorno
 
@@ -96,4 +102,5 @@ Actualmente el proyecto no requiere variables de entorno. No crees archivos `.en
 
 - Completada: Fase 1 — limpieza del proyecto anterior.
 - Completada: Fase 2 — base de desarrollo local.
-- En curso: Fase 3 — plantilla del portafolio.
+- Completada: Fase 3 — plantilla del portafolio.
+- En curso: Fase 4 — modelo de contenido.

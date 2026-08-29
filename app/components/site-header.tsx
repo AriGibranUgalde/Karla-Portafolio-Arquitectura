@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { profile } from '../../content';
 
 const links = [
   { href: '/sobre-mi', label: 'Perfil' },
@@ -10,9 +11,9 @@ const links = [
 export function SiteHeader() {
   return (
     <header className="site-header page-shell">
-      <Link className="brand" href="/" aria-label="Karla González, inicio">
-        <span>Karla González</span>
-        <small>Arquitectura</small>
+      <Link className="brand" href="/" aria-label={`${profile.name}, inicio`}>
+        <span>{profile.name}</span>
+        <small>{profile.professionalTitle}</small>
       </Link>
       <nav aria-label="Navegación principal">
         <ul className="site-nav">

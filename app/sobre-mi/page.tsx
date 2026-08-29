@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
 export const metadata: Metadata = {
-  title: 'Perfil | Karla González Arquitectura',
-  description: 'Perfil profesional de Karla González, arquitecta.',
+  title: `Perfil | ${profile.name}, ${profile.professionalTitle}`,
+  description: `Perfil profesional de ${profile.name}, ${profile.professionalTitle.toLowerCase()}.`,
 };
 
 export default function AboutPage() {
@@ -20,7 +21,7 @@ export default function AboutPage() {
         <section className="profile-layout" aria-label="Biografía profesional">
           <div className="profile-portrait" aria-hidden="true"><span>Retrato<br />por integrar</span></div>
           <div className="profile-copy">
-            <p className="lead">Karla González es arquitecta. Su perfil profesional, formación y experiencia se integrarán aquí con contenido validado.</p>
+            <p className="lead">{profile.name} es {profile.professionalTitle.toLowerCase()}. Su perfil profesional, formación y experiencia se integrarán aquí con contenido validado.</p>
             <p>
               Esta sección está diseñada para explicar el enfoque, las especialidades y el recorrido profesional sin repetir la información de cada proyecto.
             </p>

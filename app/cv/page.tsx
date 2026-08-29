@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
 export const metadata: Metadata = {
-  title: 'CV | Karla González Arquitectura',
-  description: 'Experiencia, educación y herramientas de Karla González.',
+  title: `CV | ${profile.name}, ${profile.professionalTitle}`,
+  description: `Experiencia, educación y herramientas de ${profile.name}.`,
 };
 
 export default function CvPage() {
