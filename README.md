@@ -103,4 +103,5 @@ Actualmente el proyecto no requiere variables de entorno. No crees archivos `.en
 - Completada: Fase 1 — limpieza del proyecto anterior.
 - Completada: Fase 2 — base de desarrollo local.
 - Completada: Fase 3 — plantilla del portafolio.
-- En curso: Fase 4 — modelo de contenido.
+- Completada: Fase 4 — modelo de contenido.
+- En curso: Fase 5 — ingesta, revisión y preparación del contenido.

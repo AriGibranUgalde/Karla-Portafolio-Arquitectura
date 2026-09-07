@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { profile } from '../content';
+import { getFeaturedProjects, profile, type Project } from '../content';
 import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
 
 export default function Home() {
-  const [firstName, ...lastName] = profile.name.split(' ');
+  const featuredProjects = getFeaturedProjects();
 
   return (
     <>
@@ -13,28 +14,28 @@ export default function Home() {
         <section className="hero page-shell" aria-labelledby="hero-title">
           <div className="hero-copy">
             <p className="eyebrow">{profile.professionalTitle} · {profile.location}</p>
-            <h1 id="hero-title">{firstName}<br />{lastName.join(' ')}<span>.</span></h1>
+            <h1 id="hero-title">Karla<br />González<span>.</span></h1>
             <p className="hero-intro">
-              Portafolio profesional de arquitectura. Espacio para proyectos, procesos y una mirada construida con intención.
+              Imagino una arquitectura donde la luz, el espacio y el paisaje nos hagan sentir que pertenecemos.
             </p>
-            <Link className="text-link" href="/proyectos">Explorar proyectos <span aria-hidden="true">↗</span></Link>
+            <Link className="text-link" href="/proyectos">Explora mis proyectos <span aria-hidden="true">↗</span></Link>
           </div>
-          <div className="hero-visual" aria-hidden="true">
-            <div className="hero-visual-sun" />
-            <div className="hero-visual-plane hero-visual-plane-a" />
-            <div className="hero-visual-plane hero-visual-plane-b" />
-            <p>Archivo visual<br />en preparación</p>
+          <div className="hero-identity" aria-hidden="true">
+            <Image src="/media/profile/logo-color.png" alt="" width={512} height={394} priority />
           </div>
         </section>
 
-        <section className="statement page-shell" aria-labelledby="statement-title">
-          <p className="eyebrow">Perfil</p>
-          <h2 id="statement-title">Espacios que empiezan con una pregunta y terminan en una experiencia.</h2>
-          <div className="statement-aside">
-            <p>
-              Esta plantilla está preparada para presentar proyectos arquitectónicos con claridad, contexto y una lectura visual pausada.
-            </p>
-            <Link className="text-link" href="/sobre-mi">Conocer el perfil <span aria-hidden="true">↗</span></Link>
+        <section className="home-profile page-shell" aria-labelledby="profile-title">
+          <div className="home-profile-portrait">
+            <Image src="/media/profile/karla-gonzalez.webp" alt="Retrato de Karla Janet González Rivera" fill sizes="(max-width: 700px) 100vw, 42vw" />
+          </div>
+          <div className="home-profile-copy">
+            <p className="eyebrow">Perfil</p>
+            <h2 id="profile-title">Karla Janet<br />González Rivera</h2>
+            <p className="lead">Me inspira crear espacios que conecten a las personas con su entorno, donde la arquitectura y el paisaje formen parte de una misma experiencia.</p>
+            <p>Soy egresada de Arquitectura por la Universidad Marista de Querétaro. Mi experiencia en desarrollo de proyectos y gestión me ha enseñado a acompañar cada idea con organización, atención al detalle y trabajo en equipo.</p>
+            <p>Disfruto explorar posibilidades, dar forma a las ideas y encontrar soluciones que unan creatividad y funcionalidad. En cada proyecto busco aprender, aportar una mirada sensible y cuidar aquello que hace que un espacio se sienta propio.</p>
+            <Link className="text-link" href="/cv">Conoce mi formación y CV <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
 
@@ -44,11 +45,11 @@ export default function Home() {
             <p className="cv-feature-index" aria-hidden="true">CV</p>
           </div>
           <div className="cv-feature-copy">
-            <h2 id="cv-feature-title">Experiencia, formación y herramientas que acompañan cada proyecto.</h2>
+            <h2 id="cv-feature-title">Mi experiencia, formación y herramientas dan forma a cada proyecto.</h2>
             <p>
-              Consulta el perfil profesional, la experiencia, la educación y las herramientas de trabajo de {profile.name}.
+              Te invito a conocer mi trayectoria, lo que he aprendido y las herramientas con las que llevo mis ideas a cada proyecto.
             </p>
-            <Link className="text-link" href="/cv">Ver CV y experiencia <span aria-hidden="true">↗</span></Link>
+            <Link className="text-link" href="/cv">Consulta mi CV y experiencia <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
 
@@ -60,10 +61,10 @@ export default function Home() {
             </div>
             <Link className="text-link desktop-link" href="/proyectos">Ver todos <span aria-hidden="true">↗</span></Link>
           </div>
-          <div className="project-grid">
-            <ProjectPreview number="01" title="Proyecto por documentar" tone="sand" />
-            <ProjectPreview number="02" title="Proyecto por documentar" tone="ink" />
-            <ProjectPreview number="03" title="Proyecto por documentar" tone="clay" />
+          <div className="project-grid project-grid-featured">
+            {featuredProjects.map((project, index) => (
+              <ProjectPreview key={project.id} number={String(index + 1).padStart(2, '0')} project={project} />
+            ))}
           </div>
           <Link className="text-link mobile-link" href="/proyectos">Ver todos los proyectos <span aria-hidden="true">↗</span></Link>
         </section>
@@ -73,17 +74,17 @@ export default function Home() {
   );
 }
 
-function ProjectPreview({ number, title, tone }: { number: string; title: string; tone: 'sand' | 'ink' | 'clay' }) {
+function ProjectPreview({ number, project }: { number: string; project: Project }) {
+  const cover = project.media.cover;
   return (
-    <Link className="project-preview" href="/proyectos/proyecto-en-preparacion">
-      <div className={`project-preview-image project-preview-image-${tone}`} aria-hidden="true">
+    <Link className="project-preview" href={`/proyectos/${project.slug}`}>
+      <div className="project-preview-image">
+        {cover && <Image src={cover.path} alt={cover.alt} fill sizes="(max-width: 700px) 100vw, 50vw" />}
         <span>{number}</span>
-        <i />
-        <b />
       </div>
       <div className="project-preview-meta">
-        <h3>{title}</h3>
-        <p>Plantilla de proyecto · Próximamente</p>
+        <h3>{project.name}</h3>
+        <p>{project.shortDescription}</p>
       </div>
     </Link>
   );

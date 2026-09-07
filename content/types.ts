@@ -22,6 +22,7 @@ export interface PublicDocument {
 export interface ContactLink {
   label: string;
   href: string;
+  value?: string;
 }
 
 export interface Experience {

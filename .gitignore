@@ -10,3 +10,6 @@ next-env.d.ts
 
 # System files
 .DS_Store
+
+# Unreviewed source material downloaded from Drive
+incoming/
