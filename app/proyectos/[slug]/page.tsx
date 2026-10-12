@@ -56,11 +56,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             {project.slug === 'n3' && <a className="text-link" href="#calculos">Consulta mi memoria técnica <span aria-hidden="true">↓</span></a>}
           </div>
         </section>
-        <section className="project-gallery page-shell" aria-label={`Espacios de ${project.name}`}>
+        <section id="espacios" className="project-gallery page-shell" aria-label={`Espacios de ${project.name}`}>
           <div className="gallery-heading"><p className="eyebrow">Espacios</p><p>Vistas seleccionadas</p></div>
           <ImageViewer items={project.media.gallery} layout="gallery" />
         </section>
-        {technicalMedia.length > 0 && <section className="technical-gallery page-shell" aria-label={`Documentación de ${project.name}`}>
+        {technicalMedia.length > 0 && <section id="documentacion" className="technical-gallery page-shell" aria-label={`Documentación de ${project.name}`}>
           <div className="gallery-heading"><p className="eyebrow">Documentación</p><p>{technicalLabel}</p></div>
           <ImageViewer items={technicalMedia} layout="technical" />
         </section>}

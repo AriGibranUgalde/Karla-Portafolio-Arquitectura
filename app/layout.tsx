@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { profile } from '../content';
 import './globals.css';
+import './minimalist.css';
 
 export const metadata: Metadata = {
   title: {

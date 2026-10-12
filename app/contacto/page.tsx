@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <>
+    <div className="compact-page">
       <SiteHeader />
       <main id="contenido" className="page-shell contact-page">
         <section className="page-intro" aria-labelledby="contact-title">
@@ -27,7 +27,7 @@ export default function ContactPage() {
         </section>
       </main>
       <SiteFooter />
-    </>
+    </div>
   );
 }
 
