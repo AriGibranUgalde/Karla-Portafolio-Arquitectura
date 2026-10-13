@@ -15,7 +15,7 @@ export function PlanLibrary({ categories, index }: {
       </div>
       <div className="plan-category-list">
         {categories.map((category) => (
-          <details className="plan-category" key={category.id} open={category.id === 'arquitectonicos'}>
+          <details className="plan-category" key={category.id}>
             <summary>
               <span>{category.title}</span>
               <span className="plan-category-count">{String(category.sheets.length).padStart(2, '0')} planos</span>
