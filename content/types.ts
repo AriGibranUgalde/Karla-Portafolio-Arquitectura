@@ -3,6 +3,7 @@ export type MediaType = 'image' | 'pdf';
 export interface MediaAsset {
   alt: string;
   description?: string;
+  fit?: 'contain' | 'cover';
   height?: number;
   mediaType: MediaType;
   originalName?: string;
@@ -17,6 +18,27 @@ export interface PublicDocument {
   description?: string;
   file: MediaAsset;
   publishedAt?: string;
+}
+
+export interface PlanSheet {
+  code: string;
+  height: number;
+  pageCount: number;
+  pdfPath: string;
+  previewPath: string;
+  title: string;
+  width: number;
+}
+
+export interface PlanCategory {
+  id: string;
+  sheets: PlanSheet[];
+  title: string;
+}
+
+export interface PlanLegend {
+  title: string;
+  entries: Array<{ number: number; label: string }>;
 }
 
 export interface ContactLink {
@@ -76,7 +98,14 @@ export interface ProjectMedia {
   renders: MediaAsset[];
   photographs: MediaAsset[];
   plans: MediaAsset[];
+  planLegend?: PlanLegend;
+  planCategories?: PlanCategory[];
+  planIndex?: PublicDocument;
   diagrams: MediaAsset[];
+  landscaping?: {
+    description: string;
+    images: MediaAsset[];
+  };
 }
 
 export interface Project {

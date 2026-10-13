@@ -38,9 +38,8 @@ summary:focus-visible, button:focus-visible { outline: 2px solid var(--ink); out
 @keyframes scroll-invitation { 0%, 100% { transform: translateY(-3px) rotate(45deg); opacity: .35; } 50% { transform: translateY(4px) rotate(45deg); opacity: 1; } }
 .identity-links { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 auto; max-width: 65rem; width: 100%; opacity: clamp(0, (var(--intro-progress) - .45) / .55, 1); transform: translateY(calc((1 - var(--intro-progress)) * 16px)); }
 .identity-links[aria-hidden='true'] { visibility: hidden; }
-.identity-links a { align-items: center; display: flex; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; justify-content: center; letter-spacing: .06em; min-height: 44px; text-align: center; text-transform: uppercase; text-underline-offset: .5rem; }
+.identity-links a { align-items: center; display: flex; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; justify-content: center; letter-spacing: .06em; min-height: 44px; text-align: center; text-underline-offset: .5rem; }
 .identity-links a:hover { text-decoration: underline; }
-.identity-links a:first-child { text-transform: none; }
 .site-footer { background: #fff; border-color: var(--line); }
 .site-footer p, .site-footer a, .site-footer a:hover, .site-footer a:focus-visible { color: var(--muted); }
 .page-intro h1 { font-size: clamp(2.6rem, 5vw, 5rem); line-height: 1.02; letter-spacing: -.045em; }

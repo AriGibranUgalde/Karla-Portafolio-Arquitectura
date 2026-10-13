@@ -4,6 +4,7 @@ import { getProjectBySlug, profile, projects } from '../../../content';
 import { SiteFooter } from '../../components/site-footer';
 import { SiteHeader } from '../../components/site-header';
 import { ImageViewer } from '../../components/image-viewer';
+import { PlanLibrary } from '../../components/plan-library';
 
 const n3PublishedSpreadsheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOsWds9Eq8cZi46HQN6Ktw2k1SakXrbYnPVDjNhRTwn902ssMehwSks1SBtgSxaQ/pubhtml';
 const n3SpreadsheetFile = 'https://docs.google.com/spreadsheets/d/1bJQQv6ke7CRcpEq4cuBaFVP4GZgf57qj/edit?usp=sharing';
@@ -25,6 +26,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   if (!project) return null;
   const cover = project.media.cover;
   const technicalMedia = [...project.media.plans, ...project.media.diagrams];
+  const planCategories = project.media.planCategories ?? [];
+  const hasPlanLibrary = planCategories.length > 0;
   const technicalLabel = project.slug === 'casa-luke'
     ? 'Análisis'
     : project.media.diagrams.length > 0
@@ -44,7 +47,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <div className="project-facts">
               <p><span>Autora</span>{profile.name}</p>
               <p><span>Disciplina</span>Arquitectura</p>
-              <p><span>Estado</span>Proyecto</p>
+              <p><span>Ubicación</span>{project.location ?? '—'}</p>
             </div>
           </div>
         </section>
@@ -53,21 +56,43 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div><p className="eyebrow">Descripción</p></div>
           <div className="project-narrative-content">
             <p className="lead">{project.fullDescription ?? project.shortDescription}</p>
-            {project.slug === 'n3' && <a className="text-link" href="#calculos">Consulta mi memoria técnica <span aria-hidden="true">↓</span></a>}
+            {project.slug === 'n3' && <a className="text-link" href="#calculos">Consulta mi memoria administrativa <span aria-hidden="true">↓</span></a>}
           </div>
         </section>
         <section id="espacios" className="project-gallery page-shell" aria-label={`Espacios de ${project.name}`}>
           <div className="gallery-heading"><p className="eyebrow">Espacios</p><p>Vistas seleccionadas</p></div>
           <ImageViewer items={project.media.gallery} layout="gallery" />
         </section>
-        {technicalMedia.length > 0 && <section id="documentacion" className="technical-gallery page-shell" aria-label={`Documentación de ${project.name}`}>
+        {project.media.landscaping && <section id="paisajismo" className="project-landscaping page-shell" aria-label={`Paisajismo de ${project.name}`}>
+          <div className="gallery-heading"><p className="eyebrow">Paisajismo</p><p>Vegetación propuesta</p></div>
+          <p className="landscaping-description">{project.media.landscaping.description}</p>
+          <ImageViewer items={project.media.landscaping.images} layout="gallery" />
+        </section>}
+        {(technicalMedia.length > 0 || hasPlanLibrary) && <section id="documentacion" className={`technical-gallery page-shell${project.slug === 'casa-luke' ? ' technical-gallery-casa-luke' : ''}`} aria-label={`Documentación de ${project.name}`}>
           <div className="gallery-heading"><p className="eyebrow">Documentación</p><p>{technicalLabel}</p></div>
-          <ImageViewer items={technicalMedia} layout="technical" />
+          {project.slug === 'casa-luke' ? (
+            <>
+              <div className="project-plan-layout">
+                {project.media.planLegend && <details className="project-plan-legend">
+                  <summary>{project.media.planLegend.title}</summary>
+                  <ol>
+                    {project.media.planLegend.entries.map((entry) => <li key={entry.number}>
+                      <span>{String(entry.number).padStart(2, '0')}</span>
+                      <span>{entry.label}</span>
+                    </li>)}
+                  </ol>
+                </details>}
+                {project.media.plans.length > 0 && <ImageViewer items={project.media.plans} layout="technical" numberingTotal={technicalMedia.length} />}
+              </div>
+              {project.media.diagrams.length > 0 && <ImageViewer items={project.media.diagrams} layout="technical" numberOffset={project.media.plans.length} numberingTotal={technicalMedia.length} />}
+            </>
+          ) : technicalMedia.length > 0 && <ImageViewer items={technicalMedia} layout="technical" />}
+          {hasPlanLibrary && <PlanLibrary categories={planCategories} index={project.media.planIndex} />}
         </section>}
         {project.slug === 'n3' && <section className="calculations page-shell" id="calculos" aria-labelledby="calculations-title">
           <div className="calculations-intro">
-            <div><p className="eyebrow">Memoria técnica</p><h2 id="calculations-title">Generadores de obra</h2></div>
-            <div><p>Te comparto mis hojas de cálculo y croquis para que explores la documentación técnica del proyecto. También puedes descargar mi archivo Excel original.</p><a className="text-link" href="/media/documents/n3-generadores-original.xlsx" download>Descargar Excel original <span aria-hidden="true">↓</span></a></div>
+            <div><p className="eyebrow">Memoria administrativa</p><h2 id="calculations-title">Generadores de obra</h2></div>
+            <div><p>Te comparto mis hojas de cálculo con croquis para que explores la documentación administrativa del proyecto. También puedes descargar mi archivo Excel original.</p><a className="text-link" href="/media/documents/n3-generadores-original.xlsx" download>Descargar Excel original <span aria-hidden="true">↓</span></a></div>
           </div>
           <div className="spreadsheet-viewer">
             <iframe src={`${n3PublishedSpreadsheet}?widget=true&headers=false`} title="Generadores de obra N3 en Google Sheets" loading="lazy" allowFullScreen />

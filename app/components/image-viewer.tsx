@@ -6,6 +6,8 @@ import { createPortal } from 'react-dom';
 
 export type ViewerItem = {
   alt: string;
+  downloadPath?: string;
+  fit?: 'contain' | 'cover';
   height?: number;
   path: string;
   width?: number;
@@ -13,10 +15,12 @@ export type ViewerItem = {
 
 type ImageViewerProps = {
   items: ViewerItem[];
-  layout: 'gallery' | 'technical' | 'calculation' | 'croquis';
+  layout: 'gallery' | 'technical' | 'calculation' | 'croquis' | 'plans';
+  numberOffset?: number;
+  numberingTotal?: number;
 };
 
-export function ImageViewer({ items, layout }: ImageViewerProps) {
+export function ImageViewer({ items, layout, numberOffset = 0, numberingTotal = items.length }: ImageViewerProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [zoom, setZoom] = useState(1);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -59,12 +63,15 @@ export function ImageViewer({ items, layout }: ImageViewerProps) {
     <>
       <div className={`viewer-grid viewer-grid-${layout}`}>
         {items.map((item, index) => (
-          <figure className={`viewer-item viewer-item-${layout}`} key={`${item.path}-${index}`}>
+          <figure className={`viewer-item viewer-item-${layout}${item.fit === 'contain' ? ' viewer-item-contain' : ''}`} key={`${item.path}-${index}`}>
             <button className="viewer-trigger" type="button" onClick={(event) => { opener.current = event.currentTarget; setActiveIndex(index); }} aria-label={`Ampliar ${item.alt}`}>
-              <Image src={item.path} alt={item.alt} width={item.width ?? 1600} height={item.height ?? 1000} sizes={layout === 'croquis' ? '(max-width: 700px) 50vw, 22vw' : '92vw'} />
+              <Image src={item.path} alt={item.alt} width={item.width ?? 1600} height={item.height ?? 1000} sizes={layout === 'croquis' ? '(max-width: 700px) 50vw, 22vw' : layout === 'plans' ? '(max-width: 700px) 90vw, 44vw' : '92vw'} />
               <span aria-hidden="true">Ampliar ↗</span>
             </button>
-            {layout !== 'calculation' && <figcaption>{String(index + 1).padStart(2, '0')} / {item.alt}</figcaption>}
+            {layout !== 'calculation' && <figcaption>
+              <span>{String(numberOffset + index + 1).padStart(2, '0')} / {item.alt}</span>
+              {item.downloadPath && <a className="viewer-download" href={item.downloadPath} download>Descargar PDF ↓</a>}
+            </figcaption>}
           </figure>
         ))}
       </div>
@@ -72,7 +79,7 @@ export function ImageViewer({ items, layout }: ImageViewerProps) {
       {active && createPortal(
         <dialog ref={dialog} className="viewer-overlay" aria-modal="true" onCancel={(event) => { event.preventDefault(); close(); }} aria-label={`Visor de imagen: ${active.alt}`} onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
           <div className="viewer-toolbar">
-            <p>{String(activeIndex! + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')} · {active.alt}</p>
+          <p>{String(numberOffset + activeIndex! + 1).padStart(2, '0')} / {String(numberingTotal).padStart(2, '0')} · {active.alt}</p>
             <button type="button" autoFocus onClick={close} aria-label="Cerrar visor">Cerrar ×</button>
           </div>
           <div className="viewer-canvas">

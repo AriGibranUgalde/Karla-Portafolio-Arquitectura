@@ -11,7 +11,7 @@ export function ProjectCollection({ title, description }: {
   return <div className="compact-page"><SiteHeader /><main id="contenido" className="page-shell page-content">
     <section className="page-intro"><p className="eyebrow">Proyectos</p><h1>{title}</h1><p className="lead">{description}</p></section>
     <section className="projects-archive" aria-label={`Proyectos de ${title}`}>
-      {projects.map((project, index) => {
+      {projects.filter((project) => project.category === title).map((project, index) => {
         const cover = project.media.cover;
         return <Link className="archive-item" href={`/proyectos/${project.slug}`} key={project.id}>
           <span className="archive-image">{cover && <Image src={cover.path} alt="" fill sizes="7rem" />}</span>
