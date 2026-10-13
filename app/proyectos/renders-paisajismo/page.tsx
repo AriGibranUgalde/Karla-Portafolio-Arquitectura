@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ProjectCollection title="Renders y paisajismo" description="Imágenes, espacios y relación con el entorno." section="espacios" />;
+  return <ProjectCollection title="Renders y paisajismo" description="Imágenes, espacios y relación con el entorno." />;
 }

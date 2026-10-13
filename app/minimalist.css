@@ -36,9 +36,9 @@ summary:focus-visible, button:focus-visible { outline: 2px solid var(--ink); out
 .identity-scroll-cue span { width: 20px; height: 20px; border-right: 2px solid #857b71; border-bottom: 2px solid #857b71; transform: rotate(45deg); animation: scroll-invitation 1.8s ease-in-out infinite; }
 .identity-scroll-cue span + span { animation-delay: .2s; }
 @keyframes scroll-invitation { 0%, 100% { transform: translateY(-3px) rotate(45deg); opacity: .35; } 50% { transform: translateY(4px) rotate(45deg); opacity: 1; } }
-.identity-links { display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); margin: 0 auto; max-width: 65rem; width: 100%; opacity: clamp(0, (var(--intro-progress) - .45) / .55, 1); transform: translateY(calc((1 - var(--intro-progress)) * 16px)); }
+.identity-links { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 auto; max-width: 65rem; width: 100%; opacity: clamp(0, (var(--intro-progress) - .45) / .55, 1); transform: translateY(calc((1 - var(--intro-progress)) * 16px)); }
 .identity-links[aria-hidden='true'] { visibility: hidden; }
-.identity-links a { align-items: center; display: flex; font-family: 'Courier New', monospace; font-size: .75rem; justify-content: center; letter-spacing: .06em; min-height: 44px; text-transform: uppercase; text-underline-offset: .5rem; }
+.identity-links a { align-items: center; display: flex; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; justify-content: center; letter-spacing: .06em; min-height: 44px; text-align: center; text-transform: uppercase; text-underline-offset: .5rem; }
 .identity-links a:hover { text-decoration: underline; }
 .identity-links a:first-child { text-transform: none; }
 .site-footer { background: #fff; border-color: var(--line); }
@@ -54,8 +54,8 @@ summary:focus-visible, button:focus-visible { outline: 2px solid var(--ink); out
 @media (max-width: 700px) {
   .site-header { align-items: center; padding-top: .8rem; }
   .identity-stage { padding-bottom: 3rem; }
-  .identity-links { gap: .4rem; }
-  .identity-links a { font-size: .62rem; letter-spacing: .025em; }
+  .identity-links { gap: .4rem .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .identity-links a { font-size: .9rem; letter-spacing: .03em; }
   .project-portals { gap: 2rem; min-height: calc(100svh - 8rem); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -89,3 +89,12 @@ summary:focus-visible, button:focus-visible { outline: 2px solid var(--ink); out
 }
 
 .identity-logo-black { filter: url(#identity-ink); opacity: var(--intro-progress); transition: opacity 1.6s ease; }
+
+/* Native modality keeps the background inert and constrains keyboard focus. */
+dialog.viewer-overlay { border: 0; margin: 0; width: 100%; max-width: none; height: 100dvh; max-height: none; }
+dialog.viewer-overlay::backdrop { background: #070707; }
+.viewer-toolbar button, .viewer-controls button { min-width: 44px; min-height: 44px; }
+@media (max-width: 380px) {
+  .viewer-step-label { display: none; }
+  .viewer-controls { justify-content: space-evenly; }
+}

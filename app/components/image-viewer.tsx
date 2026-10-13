@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 export type ViewerItem = {
@@ -19,6 +19,9 @@ type ImageViewerProps = {
 export function ImageViewer({ items, layout }: ImageViewerProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [zoom, setZoom] = useState(1);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
+  const isOpen = activeIndex !== null;
   const active = activeIndex === null ? null : items[activeIndex];
 
   const close = useCallback(() => {
@@ -32,9 +35,11 @@ export function ImageViewer({ items, layout }: ImageViewerProps) {
   }, [items.length]);
 
   useEffect(() => {
-    if (activeIndex === null) return;
+    if (!isOpen) return;
+    const modal = dialog.current;
+    const trigger = opener.current;
+    modal?.showModal();
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') close();
       if (event.key === 'ArrowLeft') move(-1);
       if (event.key === 'ArrowRight') move(1);
       if (event.key === '+' || event.key === '=') setZoom((value) => Math.min(3, value + .25));
@@ -43,17 +48,19 @@ export function ImageViewer({ items, layout }: ImageViewerProps) {
     document.body.classList.add('viewer-open');
     window.addEventListener('keydown', onKeyDown);
     return () => {
+      modal?.close();
+      trigger?.focus({ preventScroll: true });
       document.body.classList.remove('viewer-open');
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [activeIndex, close, move]);
+  }, [isOpen, move]);
 
   return (
     <>
       <div className={`viewer-grid viewer-grid-${layout}`}>
         {items.map((item, index) => (
           <figure className={`viewer-item viewer-item-${layout}`} key={`${item.path}-${index}`}>
-            <button className="viewer-trigger" type="button" onClick={() => setActiveIndex(index)} aria-label={`Ampliar ${item.alt}`}>
+            <button className="viewer-trigger" type="button" onClick={(event) => { opener.current = event.currentTarget; setActiveIndex(index); }} aria-label={`Ampliar ${item.alt}`}>
               <Image src={item.path} alt={item.alt} width={item.width ?? 1600} height={item.height ?? 1000} sizes={layout === 'croquis' ? '(max-width: 700px) 50vw, 22vw' : '92vw'} />
               <span aria-hidden="true">Ampliar ↗</span>
             </button>
@@ -63,22 +70,22 @@ export function ImageViewer({ items, layout }: ImageViewerProps) {
       </div>
 
       {active && createPortal(
-        <div className="viewer-overlay" role="dialog" aria-modal="true" aria-label={`Visor de imagen: ${active.alt}`} onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
+        <dialog ref={dialog} className="viewer-overlay" aria-modal="true" onCancel={(event) => { event.preventDefault(); close(); }} aria-label={`Visor de imagen: ${active.alt}`} onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
           <div className="viewer-toolbar">
             <p>{String(activeIndex! + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')} · {active.alt}</p>
-            <button type="button" onClick={close} aria-label="Cerrar visor">Cerrar ×</button>
+            <button type="button" autoFocus onClick={close} aria-label="Cerrar visor">Cerrar ×</button>
           </div>
           <div className="viewer-canvas">
             <Image src={active.path} alt={active.alt} width={active.width ?? 1600} height={active.height ?? 1000} priority sizes="100vw" style={{ transform: `scale(${zoom})` }} />
           </div>
           <div className="viewer-controls" aria-label="Controles del visor">
-            <button type="button" onClick={() => move(-1)} aria-label="Imagen anterior">← Anterior</button>
+            <button type="button" onClick={() => move(-1)} aria-label="Imagen anterior">←<span className="viewer-step-label"> Anterior</span></button>
             <button type="button" onClick={() => setZoom((value) => Math.max(.75, value - .25))} aria-label="Alejar">−</button>
             <button type="button" onClick={() => setZoom(1)} aria-label="Restablecer zoom">{Math.round(zoom * 100)}%</button>
             <button type="button" onClick={() => setZoom((value) => Math.min(3, value + .25))} aria-label="Acercar">+</button>
-            <button type="button" onClick={() => move(1)} aria-label="Imagen siguiente">Siguiente →</button>
+            <button type="button" onClick={() => move(1)} aria-label="Imagen siguiente"><span className="viewer-step-label">Siguiente </span>→</button>
           </div>
-        </div>,
+        </dialog>,
         document.body,
       )}
     </>

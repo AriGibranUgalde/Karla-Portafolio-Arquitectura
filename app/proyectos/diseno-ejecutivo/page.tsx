@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ProjectCollection title="Diseño ejecutivo" description="Planos, diagramas y documentación de los proyectos." section="documentacion" />;
+  return <ProjectCollection title="Diseño ejecutivo" description="Planos, diagramas y documentación de los proyectos." />;
 }

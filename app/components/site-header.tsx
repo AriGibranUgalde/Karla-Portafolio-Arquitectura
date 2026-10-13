@@ -8,9 +8,9 @@ import { profile } from '../../content';
 
 const links = [
   { href: '/', label: 'Inicio' },
-  { href: '/proyectos', label: 'Proyectos' },
   { href: '/sobre-mi', label: 'Sobre mí' },
   { href: '/cv', label: 'CV' },
+  { href: '/proyectos', label: 'Proyectos' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
