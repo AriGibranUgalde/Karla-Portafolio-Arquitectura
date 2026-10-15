@@ -67,15 +67,15 @@ Choose the simplest format:
 - Add production security headers where appropriate.
 - Review contact mechanisms.
 
-## Phase 8 — Performance, SEO and Accessibility (in progress — 2026-10-15)
+## Phase 8 — Performance, SEO and Accessibility (complete by author confirmation — 2026-10-15)
 - Image optimization.
-- Core Web Vitals.
+- Core Web Vitals field measurement deferred until public HTTPS deployment (Phase 10).
 - Metadata.
 - Sitemap.
-- Accessibility review.
+- Accessibility review; manual screen-reader coverage remains a follow-up.
 - Responsive refinement.
 
-## Phase 9 — Local Production Validation
+## Phase 9 — Local Production Validation (in progress — 2026-10-15)
 - Build production version.
 - Run or preview production build locally.
 - Test routes.

@@ -1,6 +1,6 @@
 # Visual design review — 2026-09-07
 
-Status: Phases 5 and 6 complete; Phase 7 security review complete on 2026-10-15; Phase 8 performance, SEO, and accessibility is in progress.
+Status: Phases 5–8 complete; Phase 9 (local production validation) is in progress.
 
 ## Recovery point
 
@@ -47,7 +47,7 @@ Transparent outer margins removed, resized to 600 pixels, and encoded as WebP fo
 
 ## Remaining phases
 
-Phase 6 visual review is approved. Next: Phase 8 performance, SEO, and accessibility; Phase 9 full local production validation; Phase 10 OCI deployment; Phase 11 operations if useful.
+Phase 6 visual review is approved. Phase 8 was closed by author confirmation on 2026-10-15; Phase 9 local production validation is in progress. Phase 10 is OCI deployment; Phase 11 operations remains optional.
 
 Refinement: enlarged downward chevrons to 20px with 2px strokes, positioned 3.5rem below the logo. Navigation order: Sobre mí, CV, Proyectos, Contacto.
 
@@ -79,10 +79,10 @@ The user requested a commit and push of the current work on `codex/diseno-minima
 - SEO follow-up for Phase 8: `/robots.txt` and `/sitemap.xml` returned HTTP 404 during the local route check.
 - After reviewing all portfolio routes and project sections, the author confirmed: “ya todo perfecto terminala.” Phase 6 is approved and closed on that instruction.
 - Responsive evidence remains the 19-emulated-viewport matrix from 2026-10-12; no physical-device review was performed in this session. The intermittent Google Sheets behavior in Safari remains a tracked technical issue for the later cross-browser/full-validation work and does not block this visual phase approval.
-- Next open phase: Phase 8, Performance, SEO, and Accessibility.
+- Phase 8 was closed by author confirmation on 2026-10-15; Phase 9 local production validation was started at the author's request.
 
 
-## Phase 8 — Performance, SEO, and accessibility — in progress — 2026-10-15
+## Phase 8 — Performance, SEO, and accessibility — complete by author confirmation — 2026-10-15
 
 - Added page-specific canonical URLs, Open Graph metadata, Twitter summary cards, and an automatically generated 1200 × 630 Open Graph image. Its built PNG is 40 KB and was visually inspected.
 - Kept `robots.txt` and the sitemap indexable; the sitemap currently contains nine public routes. Page metadata uses the configured `SITE_URL`; set the public HTTPS origin in the production build environment during Phase 10. Local builds without that value intentionally resolve to localhost.

@@ -1,6 +1,6 @@
 # Phase 8 — Performance, SEO, and Accessibility Review
 
-**Status: in progress — 2026-10-15.** This review is based on the local production build. Production-domain SEO and field Core Web Vitals must be verified after HTTPS deployment.
+**Status: complete by author confirmation — 2026-10-15.** The author confirmed the review and requested that Phase 8 be closed. This review is based on the local production build. Production-domain SEO and field Core Web Vitals remain deployment follow-ups and are not claimed as measured here.
 
 ## Changes completed
 
@@ -19,9 +19,9 @@
 - Browser accessibility-tree inspection of the N3 route found named navigation and main landmarks, a level-one project heading, labeled image controls, descriptive image names, native disclosure controls, and labeled spreadsheet links.
 - `git diff --check` passed.
 
-## Remaining work before closing Phase 8
+## Follow-ups carried beyond the author-approved close
 
-- Run a manual review with a screen reader and a keyboard-only user flow, including the image viewer and landing navigation.
-- Check compatibility on additional browsers and physical or emulated mobile devices. Verify the embedded sheet in Safari and other target browsers; the iframe is lazy-loaded and direct-open/download fallbacks remain available.
-- Measure Core Web Vitals in a public HTTPS environment. The current `SITE_URL` fallback is localhost, so set the real public HTTPS origin in the production build before Phase 10 deployment and verify canonical URLs, Open Graph links, `robots.txt`, and sitemap there.
-- Phase 9 remains the next phase after Phase 8 is reviewed and closed; Phase 10 is OCI deployment.
+- A screen-reader session and complete keyboard-only user flow were not recorded in this local review; keep them in the accessibility follow-up queue.
+- Additional browser/device checks and Safari's Google Sheets iframe behavior remain cross-browser follow-ups; direct-open and Excel download fallbacks are available.
+- Measure Core Web Vitals in a public HTTPS environment. Set the real public HTTPS origin in the production build before Phase 10 deployment and verify canonical URLs, Open Graph links, `robots.txt`, and the sitemap there.
+- Phase 9 local production validation began at the author's request and is still in progress. Phase 10 is OCI deployment.

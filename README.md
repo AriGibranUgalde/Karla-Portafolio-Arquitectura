@@ -107,4 +107,5 @@ El sitio usa archivos TypeScript tipados, sin CMS ni base de datos. Consulta [`c
 - Completada: Fase 5 — ingesta, revisión y preparación del contenido.
 - Completada: Fase 6 — revisión visual del portafolio.
 - Completada: Fase 7 — revisión de seguridad (2026-10-15).
-- En curso: Fase 8 — rendimiento, SEO y accesibilidad.
+- Completada por confirmación autoral: Fase 8 — rendimiento, SEO y accesibilidad (2026-10-15).
+- En curso: Fase 9 — validación local de producción (2026-10-15).
