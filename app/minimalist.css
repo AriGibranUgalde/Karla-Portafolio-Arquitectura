@@ -38,7 +38,7 @@ summary:focus-visible, button:focus-visible { outline: 2px solid var(--ink); out
 @keyframes scroll-invitation { 0%, 100% { transform: translateY(-3px) rotate(45deg); opacity: .35; } 50% { transform: translateY(4px) rotate(45deg); opacity: 1; } }
 .identity-links { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 auto; max-width: 65rem; width: 100%; opacity: clamp(0, (var(--intro-progress) - .45) / .55, 1); transform: translateY(calc((1 - var(--intro-progress)) * 16px)); }
 .identity-links[aria-hidden='true'] { visibility: hidden; }
-.identity-links a { align-items: center; display: flex; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; justify-content: center; letter-spacing: .06em; min-height: 44px; text-align: center; text-underline-offset: .5rem; }
+.identity-links a { align-items: center; display: flex; font-family: 'Courier New', monospace; font-size: 1.2rem; font-weight: 400; justify-content: center; letter-spacing: .06em; min-height: 44px; text-align: center; text-underline-offset: .5rem; }
 .identity-links a:hover { text-decoration: underline; }
 .site-footer { background: #fff; border-color: var(--line); }
 .site-footer p, .site-footer a, .site-footer a:hover, .site-footer a:focus-visible { color: var(--muted); }
@@ -54,7 +54,7 @@ summary:focus-visible, button:focus-visible { outline: 2px solid var(--ink); out
   .site-header { align-items: center; padding-top: .8rem; }
   .identity-stage { padding-bottom: 3rem; }
   .identity-links { gap: .4rem .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .identity-links a { font-size: .9rem; letter-spacing: .03em; }
+  .identity-links a { font-size: 1rem; letter-spacing: .03em; }
   .project-portals { gap: 2rem; min-height: calc(100svh - 8rem); }
 }
 @media (prefers-reduced-motion: reduce) {
