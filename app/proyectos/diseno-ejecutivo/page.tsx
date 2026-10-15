@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '../../../lib/page-metadata';
 import { profile } from '../../../content';
 import { ProjectCollection } from '../../components/project-collection';
 
-export const metadata: Metadata = {
-  title: `Diseño ejecutivo | ${profile.name}`,
-  description: 'Planos, diagramas y documentación de los proyectos.',
-};
+export const metadata = pageMetadata(
+  `Diseño ejecutivo | ${profile.name}`,
+  'Planos, diagramas y documentación de los proyectos.',
+  '/proyectos/diseno-ejecutivo',
+);
 
 export default function Page() {
   return <ProjectCollection title="Diseño ejecutivo" description="Planos, diagramas y documentación de los proyectos." />;

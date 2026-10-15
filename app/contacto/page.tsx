@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { pageMetadata } from '../../lib/page-metadata';
 import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
-export const metadata: Metadata = {
-  title: `Contacto | ${profile.name}, ${profile.professionalTitle}`,
-  description: 'Contáctame para conversar sobre arquitectura, proyectos y colaboraciones.',
-};
+export const metadata = pageMetadata(
+  `Contacto | ${profile.name}, ${profile.professionalTitle}`,
+  'Contáctame para conversar sobre arquitectura, proyectos y colaboraciones.',
+  '/contacto',
+);
 
 export default function ContactPage() {
   return (

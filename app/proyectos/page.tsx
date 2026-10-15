@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { pageMetadata } from '../../lib/page-metadata';
 import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
-export const metadata: Metadata = {
-  title: `Proyectos | ${profile.name}, ${profile.professionalTitle}`,
-  description: 'Explora mis proyectos de arquitectura y conoce mi proceso de diseño y representación.',
-};
+export const metadata = pageMetadata(
+  `Proyectos | ${profile.name}, ${profile.professionalTitle}`,
+  'Explora mis proyectos de arquitectura y conoce mi proceso de diseño y representación.',
+  '/proyectos',
+);
 
 export default function ProjectsPage() {
   return (

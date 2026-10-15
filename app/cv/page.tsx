@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { pageMetadata } from '../../lib/page-metadata';
 import { documents, profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
-export const metadata: Metadata = {
-  title: `CV | ${profile.name}, ${profile.professionalTitle}`,
-  description: 'Conoce mi experiencia, formación y herramientas de trabajo. Descarga mi CV en español o inglés.',
-};
+export const metadata = pageMetadata(
+  `CV | ${profile.name}, ${profile.professionalTitle}`,
+  'Conoce mi experiencia, formación y herramientas de trabajo. Descarga mi CV en español o inglés.',
+  '/cv',
+);
 
 export default function CvPage() {
   const cv = documents.find((document) => document.id === profile.cvDocumentId);

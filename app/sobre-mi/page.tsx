@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { pageMetadata } from '../../lib/page-metadata';
 import { profile } from '../../content';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
 
-export const metadata: Metadata = {
-  title: `Perfil | ${profile.name}, ${profile.professionalTitle}`,
-  description: 'Conoce mi perfil, mi formación en arquitectura y mi manera de abordar cada proyecto.',
-};
+export const metadata = pageMetadata(
+  `Perfil | ${profile.name}, ${profile.professionalTitle}`,
+  'Conoce mi perfil, mi formación en arquitectura y mi manera de abordar cada proyecto.',
+  '/sobre-mi',
+);
 
 export default function AboutPage() {
   return (

@@ -47,7 +47,7 @@ Do not add a backend only for a contact form unless necessary.
 
 ## Phase 7 — Security Review
 
-**Status: in progress — 2026-10-15.** The review covered application configuration and external links, package advisories, public documents, the Drive content ingestion script, and tracked Git history. The portfolio is static and has no accounts, contact form, database, server actions, or user-controlled API endpoints.
+**Status: complete — 2026-10-15.** The review covered application configuration and external links, package advisories, public documents, the Drive content ingestion script, and tracked Git history. The portfolio is static and has no accounts, contact form, database, server actions, or user-controlled API endpoints.
 
 ### Completed in this review
 - Updated `next` and `eslint-config-next` to 16.3.8, and patched transitive `brace-expansion` and `source-map-js` dependencies with pnpm overrides.
@@ -68,7 +68,7 @@ The advisory GHSA-vfj7-8cjw-p6xm had no patched `braces` version available. It w
 
 HSTS is not configured in the application because HTTPS termination is an OCI deployment concern and deployment is a later phase. Confirm HTTPS and add HSTS at the deployment edge during Phase 10.
 
-The previously open `braces` advisory is resolved. Phase 7 remains subject to the project review and closeout approval. No commit or push has been made.
+The `braces` advisory was removed from the dependency tree, production security headers were verified, and the production dependency audit is clean. Phase 7 is complete. The reviewed changes were pushed in commit `ac05463` on `codex/diseno-minimalista-canva`. HSTS remains scheduled for Phase 10, when HTTPS termination is configured.
 
 ### Configuration, injection, and local development
 - The application currently reads only `SITE_URL`, used while building canonical URLs for `robots.txt` and `sitemap.xml`. It is public configuration, not a credential. `lib/site-url.ts` now rejects non-HTTPS public origins, embedded credentials, query strings, and fragments; plain HTTP is allowed only for localhost development.

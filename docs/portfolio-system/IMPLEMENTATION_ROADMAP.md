@@ -59,7 +59,7 @@ Choose the simplest format:
 - Build project narratives.
 - Refine responsive behavior.
 
-## Phase 7 — Security Review
+## Phase 7 — Security Review (complete — 2026-10-15)
 - Remove unused backend features.
 - Remove secrets.
 - Review dependencies.
@@ -67,7 +67,7 @@ Choose the simplest format:
 - Add production security headers where appropriate.
 - Review contact mechanisms.
 
-## Phase 8 — Performance, SEO and Accessibility
+## Phase 8 — Performance, SEO and Accessibility (in progress — 2026-10-15)
 - Image optimization.
 - Core Web Vitals.
 - Metadata.

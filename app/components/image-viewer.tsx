@@ -65,7 +65,7 @@ export function ImageViewer({ items, layout, numberOffset = 0, numberingTotal = 
         {items.map((item, index) => (
           <figure className={`viewer-item viewer-item-${layout}${item.fit === 'contain' ? ' viewer-item-contain' : ''}`} key={`${item.path}-${index}`}>
             <button className="viewer-trigger" type="button" onClick={(event) => { opener.current = event.currentTarget; setActiveIndex(index); }} aria-label={`Ampliar ${item.alt}`}>
-              <Image src={item.path} alt={item.alt} width={item.width ?? 1600} height={item.height ?? 1000} sizes={layout === 'croquis' ? '(max-width: 700px) 50vw, 22vw' : layout === 'plans' ? '(max-width: 700px) 90vw, 44vw' : '92vw'} />
+              <Image src={item.path} alt={item.alt} width={item.width ?? 1600} height={item.height ?? 1000} sizes={layout === 'gallery' ? '(max-width: 700px) 90vw, (max-width: 1200px) 46vw, 35rem' : layout === 'croquis' ? '(max-width: 700px) 50vw, 22vw' : layout === 'plans' ? '(max-width: 700px) 90vw, (max-width: 1200px) 46vw, 35rem' : '92vw'} />
               <span aria-hidden="true">Ampliar ↗</span>
             </button>
             {layout !== 'calculation' && <figcaption>

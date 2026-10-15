@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '../../../lib/page-metadata';
 import Image from 'next/image';
 import { getProjectBySlug, profile, projects } from '../../../content';
 import { SiteFooter } from '../../components/site-footer';
@@ -15,8 +16,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const project = getProjectBySlug((await params).slug);
-  return { title: `${project?.name ?? 'Proyecto'} | ${profile.name}`, description: project?.shortDescription };
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  const title = `${project?.name ?? 'Proyecto'} | ${profile.name}`;
+  const description = project?.shortDescription ?? 'Conoce este proyecto de arquitectura.';
+  return pageMetadata(title, description, `/proyectos/${slug}`);
 }
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -98,9 +102,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <a className="text-link" href="/media/documents/n3-generadores-original.xlsx" download>Descargar Excel original <span aria-hidden="true">↓</span></a>
           </div>
           <div className="spreadsheet-viewer">
-            <iframe src={`${n3PublishedSpreadsheet}?widget=true&headers=false`} title="Generadores de obra N3 en Google Sheets" loading="eager" allowFullScreen />
+            <iframe src={`${n3PublishedSpreadsheet}?widget=true&headers=false`} title="Generadores de obra N3 en Google Sheets" loading="lazy" allowFullScreen />
           </div>
-          <p className="spreadsheet-fallback">La vista integrada depende de Google y puede no mostrarse en algunos navegadores. Los enlaces de arriba permiten abrir la hoja o descargar el archivo Excel.</p>
+          <p className="spreadsheet-fallback">Si la vista integrada no carga, puedes abrir la hoja en Google Sheets o descargar la copia en Excel.</p>
         </section>}
       </main>
       <SiteFooter />
