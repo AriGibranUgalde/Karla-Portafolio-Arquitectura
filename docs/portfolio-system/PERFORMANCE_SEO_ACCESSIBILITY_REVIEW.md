@@ -24,4 +24,4 @@
 - A screen-reader session and complete keyboard-only user flow were not recorded in this local review; keep them in the accessibility follow-up queue.
 - Additional browser/device checks and Safari's Google Sheets iframe behavior remain cross-browser follow-ups; direct-open and Excel download fallbacks are available.
 - Measure Core Web Vitals in a public HTTPS environment. Set the real public HTTPS origin in the production build before Phase 10 deployment and verify canonical URLs, Open Graph links, `robots.txt`, and the sitemap there.
-- Phase 9 local production validation began at the author's request and is still in progress. Phase 10 is OCI deployment.
+- Phase 9 local production validation was closed by author confirmation on 2026-10-15. Phase 10 is OCI deployment.

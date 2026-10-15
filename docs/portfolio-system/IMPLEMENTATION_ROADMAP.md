@@ -75,7 +75,7 @@ Choose the simplest format:
 - Accessibility review; manual screen-reader coverage remains a follow-up.
 - Responsive refinement.
 
-## Phase 9 — Local Production Validation (in progress — 2026-10-15)
+## Phase 9 — Local Production Validation (complete by author confirmation — 2026-10-15)
 - Build production version.
 - Run or preview production build locally.
 - Test routes.
