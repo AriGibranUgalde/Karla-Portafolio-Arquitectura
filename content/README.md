@@ -19,7 +19,7 @@ Este directorio es la fuente de contenido del sitio. Se usa TypeScript porque el
 4. Añade texto alternativo útil a cada imagen pública.
 5. Ejecuta `pnpm check` antes de solicitar un commit.
 
-No inventes fechas, clientes, ubicaciones, datos de contacto o credenciales. Los arreglos vacíos actuales indican que la información todavía debe ser revisada y aprobada.
+No inventes fechas, clientes, ubicaciones, datos de contacto o credenciales. Los arreglos vacíos indican que no se publica información en esa categoría; no añadas datos sin confirmación de la autora.
 
 ## Proyecto mínimo
 

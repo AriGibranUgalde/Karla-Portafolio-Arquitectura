@@ -1,6 +1,6 @@
 # Visual design review — 2026-09-07
 
-Status: implemented and validated locally. On 2026-10-12 the user authorized committing and pushing the current work as a recovery point. Formal phase closure remains pending.
+Status: implemented and validated locally. Phase 5 content ingestion was closed on 2026-10-12. Phase 6 visual review was approved by the author on 2026-10-15. Next open phase: Phase 7, Security Review.
 
 ## Recovery point
 
@@ -47,8 +47,7 @@ Transparent outer margins removed, resized to 600 pixels, and encoded as WebP fo
 
 ## Remaining phases
 
-Next: user review of Phase 6 and authorization to close it. Phase 5 content closure is still marked pending in README.
-Then Phase 7 security; Phase 8 performance, SEO, and accessibility; Phase 9 full local production validation; Phase 10 OCI deployment; Phase 11 operations if useful.
+Phase 6 visual review is approved. Next: Phase 7 security; Phase 8 performance, SEO, and accessibility; Phase 9 full local production validation; Phase 10 OCI deployment; Phase 11 operations if useful.
 
 Refinement: enlarged downward chevrons to 20px with 2px strokes, positioned 3.5rem below the logo. Navigation order: Sobre mí, CV, Proyectos, Contacto.
 
@@ -64,3 +63,20 @@ Refinement: enlarged downward chevrons to 20px with 2px strokes, positioned 3.5r
 ## GitHub backup — 2026-10-12
 
 The user requested a commit and push of the current work on `codex/diseno-minimalista-canva`, without a pull request. Application code, web assets, and this review record are included. Local rendering intermediates in `tmp/`, generated PDF output in `output/`, and unreviewed Drive originals remain local. This backup does not mark later roadmap phases complete.
+
+## Phase 5 — Content ingestion closure — 2026-10-12
+
+- The author confirmed that project/profile content, CV details and levels, and image publication/attribution review are complete.
+- N3 plans were organized into 10 categories with 50 PDF sheets and 50 previews. Casa Luke's landscape gallery, plan image, legend, descriptions, and alternative text were added to the structured content.
+- `pnpm check` passed; an asset audit found all 50 N3 plan PDFs and 50 previews with no missing files.
+- Phase 5 is complete. Phase 6 was then the next phase for visual review.
+
+## Phase 6 — Visual review approved — 2026-10-15
+
+- Corrected the low-contrast decorative arrows on the dark N3 calculations section; they now use the light link color.
+- `pnpm check` passed, and the local development server is available at `http://localhost:3000` for author review.
+- The 2026-10-15 visual sweep covered `/`, `/sobre-mi`, `/cv`, `/contacto`, `/proyectos`, both project categories, `/proyectos/n3`, and `/proyectos/casa-luke`, including Casa Luke's spaces, landscaping and documentation sections. All nine public routes returned HTTP 200. Current IAB viewport was approximately 803×800; responsive mobile evidence remains the 19-emulated-viewport matrix from 2026-10-12, not a physical-device check.
+- SEO follow-up for Phase 8: `/robots.txt` and `/sitemap.xml` returned HTTP 404 during the local route check.
+- After reviewing all portfolio routes and project sections, the author confirmed: “ya todo perfecto terminala.” Phase 6 is approved and closed on that instruction.
+- Responsive evidence remains the 19-emulated-viewport matrix from 2026-10-12; no physical-device review was performed in this session. The intermittent Google Sheets behavior in Safari remains a tracked technical issue for the later cross-browser/full-validation work and does not block this visual phase approval.
+- Next open phase: Phase 7, Security Review. No commit or push was made.

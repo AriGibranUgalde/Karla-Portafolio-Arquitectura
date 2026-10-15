@@ -7,7 +7,6 @@ import { ImageViewer } from '../../components/image-viewer';
 import { PlanLibrary } from '../../components/plan-library';
 
 const n3PublishedSpreadsheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOsWds9Eq8cZi46HQN6Ktw2k1SakXrbYnPVDjNhRTwn902ssMehwSks1SBtgSxaQ/pubhtml';
-const n3SpreadsheetFile = 'https://docs.google.com/spreadsheets/d/1bJQQv6ke7CRcpEq4cuBaFVP4GZgf57qj/edit?usp=sharing';
 
 export const dynamicParams = false;
 
@@ -92,15 +91,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         {project.slug === 'n3' && <section className="calculations page-shell" id="calculos" aria-labelledby="calculations-title">
           <div className="calculations-intro">
             <div><p className="eyebrow">Memoria administrativa</p><h2 id="calculations-title">Generadores de obra</h2></div>
-            <div><p>Te comparto mis hojas de cálculo con croquis para que explores la documentación administrativa del proyecto. También puedes descargar mi archivo Excel original.</p><a className="text-link" href="/media/documents/n3-generadores-original.xlsx" download>Descargar Excel original <span aria-hidden="true">↓</span></a></div>
-          </div>
-          <div className="spreadsheet-viewer">
-            <iframe src={`${n3PublishedSpreadsheet}?widget=true&headers=false`} title="Generadores de obra N3 en Google Sheets" loading="lazy" allowFullScreen />
+            <div><p>Te comparto mis hojas de cálculo con croquis para que explores la documentación administrativa del proyecto.</p></div>
           </div>
           <div className="spreadsheet-actions">
-            <a className="text-link" href={n3SpreadsheetFile} target="_blank" rel="noreferrer">Abrir Google Sheets <span aria-hidden="true">↗</span></a>
-            <p>Si el visor no carga, abre el archivo en Google Sheets o descarga el original.</p>
+            <a className="text-link" href={n3PublishedSpreadsheet} target="_blank" rel="noreferrer">Abrir Google Sheets <span aria-hidden="true">↗</span></a>
+            <a className="text-link" href="/media/documents/n3-generadores-original.xlsx" download>Descargar Excel original <span aria-hidden="true">↓</span></a>
           </div>
+          <div className="spreadsheet-viewer">
+            <iframe src={`${n3PublishedSpreadsheet}?widget=true&headers=false`} title="Generadores de obra N3 en Google Sheets" loading="eager" allowFullScreen />
+          </div>
+          <p className="spreadsheet-fallback">La vista integrada depende de Google y puede no mostrarse en algunos navegadores. Los enlaces de arriba permiten abrir la hoja o descargar el archivo Excel.</p>
         </section>}
       </main>
       <SiteFooter />

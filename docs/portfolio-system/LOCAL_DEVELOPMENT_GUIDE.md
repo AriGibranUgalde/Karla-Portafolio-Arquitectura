@@ -28,7 +28,7 @@ Use only when needed:
 
 Exclude real secrets from Git.
 
-Provide `.env.example` when required.
+`SITE_URL` sets the canonical origin used by `robots.txt` and `sitemap.xml`. It defaults to `http://localhost:3000` for local work. Set it to the public HTTPS origin in the production build environment. `.env.example` documents the local default; it contains no secrets.
 
 ## Content Updates
 Content should be editable through organized files, for example:

@@ -80,7 +80,7 @@ Durante la Fase 3 estas rutas muestran plantillas. La información real se incor
 
 ## Modelo de contenido
 
-El sitio usa archivos TypeScript tipados, sin CMS ni base de datos. Consulta [`content/README.md`](content/README.md) antes de editar el perfil, los proyectos o los documentos. Los arreglos vacíos representan contenido pendiente de aprobación; no deben llenarse con información ficticia.
+El sitio usa archivos TypeScript tipados, sin CMS ni base de datos. Consulta [`content/README.md`](content/README.md) antes de editar el perfil, los proyectos o los documentos. Los arreglos vacíos indican que no se publica información en esa categoría; no deben llenarse con información ficticia.
 
 ## Contenido y medios
 
@@ -92,7 +92,7 @@ El sitio usa archivos TypeScript tipados, sin CMS ni base de datos. Consulta [`c
 
 ## Variables de entorno
 
-Actualmente el proyecto no requiere variables de entorno. No crees archivos `.env` o `.env.local` salvo que una funcionalidad futura los necesite y esté documentada. Nunca subas secretos al repositorio.
+`SITE_URL` configura el origen canónico de `robots.txt` y `sitemap.xml`; en local toma `http://localhost:3000`. En producción, define la URL HTTPS pública en el entorno de build. `.env.example` muestra el valor local y no contiene secretos. Nunca subas credenciales al repositorio.
 
 ## Flujo de ramas
 
@@ -104,4 +104,6 @@ Actualmente el proyecto no requiere variables de entorno. No crees archivos `.en
 - Completada: Fase 2 — base de desarrollo local.
 - Completada: Fase 3 — plantilla del portafolio.
 - Completada: Fase 4 — modelo de contenido.
-- En curso: Fase 5 — ingesta, revisión y preparación del contenido.
+- Completada: Fase 5 — ingesta, revisión y preparación del contenido.
+- Completada: Fase 6 — revisión visual del portafolio.
+- Siguiente: Fase 7 — revisión de seguridad.

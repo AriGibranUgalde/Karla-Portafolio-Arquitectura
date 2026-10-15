@@ -275,14 +275,15 @@ body::after {
 .technical-item figcaption { color: var(--muted); font-size: .62rem; letter-spacing: .08em; padding-top: .65rem; text-transform: uppercase; }
 .calculations { background: rgba(9,9,9,.94); color: var(--paper); padding-bottom: clamp(4rem, 9vw, 8rem); padding-top: clamp(4rem, 9vw, 8rem); }
 .calculations .eyebrow, .calculations .text-link { color: var(--paper); }
+.calculations .text-link span { color: var(--paper); }
 .calculations-intro { display: grid; gap: 3rem; grid-template-columns: 1fr minmax(18rem,.7fr); margin-bottom: clamp(3rem,7vw,6rem); }
 .calculations-intro h2 { font-family: var(--serif); font-size: clamp(2.7rem,5vw,5.5rem); letter-spacing: -.06em; line-height: .9; margin: 0; }
 .calculations-intro > div:last-child { align-self: end; color: rgba(247,247,245,.68); line-height: 1.6; }
 .spreadsheet-viewer { background: #fff; border: 1px solid rgba(255,255,255,.28); height: min(78svh, 52rem); overflow: hidden; }
 .spreadsheet-viewer iframe { border: 0; display: block; height: 100%; width: 100%; }
-.spreadsheet-actions { align-items: baseline; display: flex; gap: 1.5rem; justify-content: space-between; }
+.spreadsheet-actions { align-items: baseline; display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; justify-content: flex-start; margin-bottom: 1.25rem; }
 .spreadsheet-actions .text-link { flex: 0 0 auto; }
-.spreadsheet-actions p { color: rgba(247,247,245,.58); font-size: .72rem; margin: 1.5rem 0 0; text-align: right; }
+.spreadsheet-fallback { color: rgba(247,247,245,.58); font-size: .72rem; line-height: 1.5; margin: .75rem 0 0; }
 .calculation-list { border-top: 1px solid rgba(255,255,255,.2); }
 .calculation-section { border-bottom: 1px solid rgba(255,255,255,.2); padding: clamp(2rem,5vw,4rem) 0; }
 .calculation-section header { display: grid; gap: 1.5rem; grid-template-columns: 3rem 1fr; margin-bottom: 1.5rem; }

@@ -7,6 +7,7 @@ next-env.d.ts
 # Environment files and credentials
 .env
 .env.*
+!.env.example
 
 # System files
 .DS_Store
