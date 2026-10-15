@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { projects } from '../content';
 import { absoluteSiteUrl } from '../lib/site-url';
 
+export const dynamic = 'force-static';
+
 const staticRoutes = [
   '/',
   '/sobre-mi',
