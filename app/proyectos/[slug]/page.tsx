@@ -94,7 +94,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <div><p>Te comparto mis hojas de cálculo con croquis para que explores la documentación administrativa del proyecto.</p></div>
           </div>
           <div className="spreadsheet-actions">
-            <a className="text-link" href={n3PublishedSpreadsheet} target="_blank" rel="noreferrer">Abrir Google Sheets <span aria-hidden="true">↗</span></a>
+            <a className="text-link" href={n3PublishedSpreadsheet} target="_blank" rel="noopener noreferrer">Abrir Google Sheets <span aria-hidden="true">↗</span></a>
             <a className="text-link" href="/media/documents/n3-generadores-original.xlsx" download>Descargar Excel original <span aria-hidden="true">↓</span></a>
           </div>
           <div className="spreadsheet-viewer">

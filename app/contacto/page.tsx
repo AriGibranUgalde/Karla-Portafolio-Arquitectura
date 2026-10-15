@@ -32,7 +32,7 @@ export default function ContactPage() {
 }
 
 function ContactLink({ label, href, value, external = false }: { label: string; href: string; value?: string; external?: boolean }) {
-  return <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
+  return <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
     <ContactIcon type={label} />
     <span>{label}</span>
     <strong>{value}</strong>

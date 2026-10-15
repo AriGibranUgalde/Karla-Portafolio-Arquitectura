@@ -77,10 +77,10 @@ export function ImageViewer({ items, layout, numberOffset = 0, numberingTotal = 
       </div>
 
       {active && createPortal(
-        <dialog ref={dialog} className="viewer-overlay" aria-modal="true" onCancel={(event) => { event.preventDefault(); close(); }} aria-label={`Visor de imagen: ${active.alt}`} onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
+        <dialog ref={dialog} className="viewer-overlay" aria-modal="true" onClick={(event) => { if (event.target === event.currentTarget) close(); }} onCancel={(event) => { event.preventDefault(); close(); }} aria-label={`Visor de imagen: ${active.alt}`}>
           <div className="viewer-toolbar">
           <p>{String(numberOffset + activeIndex! + 1).padStart(2, '0')} / {String(numberingTotal).padStart(2, '0')} · {active.alt}</p>
-            <button type="button" autoFocus onClick={close} aria-label="Cerrar visor">Cerrar ×</button>
+            <button type="button" onClick={close} aria-label="Cerrar visor">Cerrar ×</button>
           </div>
           <div className="viewer-canvas">
             <Image src={active.path} alt={active.alt} width={active.width ?? 1600} height={active.height ?? 1000} priority sizes="100vw" style={{ transform: `scale(${zoom})` }} />

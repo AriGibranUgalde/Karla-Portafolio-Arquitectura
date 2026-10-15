@@ -5,12 +5,13 @@ set -euo pipefail
 DRIVE_URL="${1:-https://drive.google.com/drive/folders/1M8RkAocSCWyLvvC92iYbZdflfFyNbJmv}"
 DESTINATION="${2:-incoming/google-drive}"
 VENV_DIR="${DESTINATION}/.download-tools"
+GDOWN_VERSION="5.2.0"
 
 mkdir -p "$DESTINATION"
 
 if [[ ! -x "$VENV_DIR/bin/python" ]]; then
   python3 -m venv "$VENV_DIR"
-  "$VENV_DIR/bin/python" -m pip install --quiet gdown
+  "$VENV_DIR/bin/python" -m pip install --quiet "gdown==${GDOWN_VERSION}"
 fi
 
 "$VENV_DIR/bin/python" - "$DRIVE_URL" "$DESTINATION" <<'PY'
@@ -27,6 +28,7 @@ destination = Path(sys.argv[2]).resolve()
 originals = destination / "originals"
 inventory_path = destination / "inventory.csv"
 originals.mkdir(parents=True, exist_ok=True)
+originals_root = originals.resolve()
 
 entries = gdown.download_folder(
     url=drive_url,
@@ -63,10 +65,23 @@ def image_extension(path):
         return ".webp"
     return ""
 
+
+def ensure_inside_originals(path):
+    resolved = path.resolve()
+    try:
+        resolved.relative_to(originals_root)
+    except ValueError:
+        raise SystemExit(f"La ruta sale del directorio de originales: {path}")
+    return resolved
+
 for entry in entries:
     relative = Path(entry.path)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise SystemExit(f"Ruta de Drive no válida: {entry.path}")
     target = originals / relative
+    ensure_inside_originals(target)
     candidate = previous_paths.get(entry.id, target)
+    candidate = ensure_inside_originals(candidate)
 
     if entry.id not in previous_paths:
         duplicate_number = 2

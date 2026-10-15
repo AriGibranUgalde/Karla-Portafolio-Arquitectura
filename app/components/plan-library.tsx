@@ -11,7 +11,7 @@ export function PlanLibrary({ categories, index }: {
     <div className="plan-library">
       <div className="plan-library-index">
         <p>{sheetCount} láminas · {categories.length} categorías</p>
-        {index && <a href={index.file.path} target="_blank" rel="noreferrer">Ver listado de planos ↗</a>}
+        {index && <a href={index.file.path} target="_blank" rel="noopener noreferrer">Ver listado de planos ↗</a>}
       </div>
       <div className="plan-category-list">
         {categories.map((category) => (
